@@ -9,17 +9,38 @@
       Статичные теги ниже дублируют то, что PageMeta/JsonLd (src/components/)
       выставляют на клиенте: краулеры превью соцсетей (Telegram, Facebook,
       LinkedIn) не выполняют JS и читают только этот, исходный HTML.
-      SITE_URL — плейсхолдер, см. src/data/site.ts; при смене домена поправить
-      и здесь.
+      SITE_URL — см. src/data/site.ts; при смене домена поправить и здесь.
     -->
     <meta name="description" content="Фронтенд-разработчик: React, TypeScript, three.js. Портфолио с разбором проектов." />
-    <link rel="canonical" href="https://runforest1.dev/" />
+    <link rel="canonical" href="https://runforest1.github.io/portfolio/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="RunForest1 — фронтенд-разработчик" />
     <meta property="og:description" content="Фронтенд-разработчик: React, TypeScript, three.js. Портфолио с разбором проектов." />
-    <meta property="og:url" content="https://runforest1.dev/" />
-    <meta property="og:image" content="https://runforest1.dev/og-image.png" />
+    <meta property="og:url" content="https://runforest1.github.io/portfolio/" />
+    <meta property="og:image" content="https://runforest1.github.io/portfolio/og-image.png" />
     <meta name="twitter:card" content="summary_large_image" />
+    <!--
+      GitHub Pages отдаёт public/404.html на любой путь, которого нет среди
+      статических файлов (например /portfolio/work/pandemia) — а у нас это
+      валидный маршрут SPA, а не настоящая 404. 404.html кодирует путь в
+      query-строку и редиректит сюда; этот скрипт декодирует его обратно до
+      того, как react-router прочитает location.
+      См. https://github.com/rafgraph/spa-github-pages
+    -->
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&')
+            })
+            .join('?')
+          window.history.replaceState(null, '', l.pathname.slice(0, -1) + decoded + l.hash)
+        }
+      })(window.location)
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -4,6 +4,7 @@ import Tag from '@/components/Tag'
 import { techLabelById } from '@/data/stack'
 import { STATUS_LABEL } from '@/lib/projectStatus'
 import { formatShortDate } from '@/lib/date'
+import { withBase } from '@/lib/assetUrl'
 import type { Project } from '@/types/project'
 import { useGithubRepoInfo } from './useGithubRepoInfo'
 
@@ -49,7 +50,7 @@ function CardBody({ project, external }: { project: Project; external: boolean }
   return (
     <>
       <img
-        src={project.cover.src}
+        src={withBase(project.cover.src)}
         alt={project.cover.alt}
         width={project.cover.width}
         height={project.cover.height}

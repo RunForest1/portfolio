@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://runforest1.dev/sitemap.xml
+Sitemap: https://runforest1.github.io/portfolio/sitemap.xml

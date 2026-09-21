@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { withBase } from '@/lib/assetUrl'
 import type { Image } from '@/types/project'
 
 interface GalleryProps {
@@ -77,7 +78,7 @@ export default function Gallery({ images }: GalleryProps) {
               className="block w-full border border-steel transition-colors duration-150 ease-out hover:border-signal"
             >
               <img
-                src={image.src}
+                src={withBase(image.src)}
                 alt={image.alt}
                 width={image.width}
                 height={image.height}
@@ -130,7 +131,7 @@ export default function Gallery({ images }: GalleryProps) {
           )}
 
           <img
-            src={openImage.src}
+            src={withBase(openImage.src)}
             alt={openImage.alt}
             width={openImage.width}
             height={openImage.height}

@@ -9,7 +9,9 @@
   "scripts": {
     "dev": "vite",
     "build": "node scripts/generate-seo-files.mjs && tsc -b && vite build",
+    "build:pages": "node scripts/generate-seo-files.mjs && tsc -b && cross-env GITHUB_PAGES=true vite build",
     "preview": "vite preview",
+    "preview:pages": "vite preview --base=/portfolio/",
     "typecheck": "tsc -b --noEmit",
     "lint": "eslint . --max-warnings=0",
     "test": "vitest run"
@@ -41,6 +43,7 @@
     "@types/react-dom": "^19.2.7",
     "@types/three": "^0.186.0",
     "@vitejs/plugin-react": "^6.1.1",
+    "cross-env": "^7.0.3",
     "eslint": "^10.10.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react-hooks": "^7.1.1",
