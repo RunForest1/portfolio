@@ -1,0 +1,84 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Палитра: инженерная телеметрия. --color-signal — единственный акцент,
+     не более 2-3 раз на экране. См. CLAUDE.md, раздел 5. */
+  --color-void: #05080d;
+  --color-hull: #0d141d;
+  --color-steel: #24303e;
+  --color-haze: #7d8fa3;
+  --color-ice: #e8eef4;
+  --color-signal: #ff8a3d;
+
+  --font-display: 'Archivo Variable', sans-serif;
+  --font-sans: 'IBM Plex Sans Variable', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Шкала 12/14/16/20/28/40/64/96. Крупные ступени сжимаются clamp()'ом. */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);
+  --text-2xl: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem);
+  --text-3xl: clamp(2rem, 1.2rem + 3.6vw, 4rem);
+  --text-4xl: clamp(2.5rem, 1.1rem + 6vw, 6rem);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-ice);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  code,
+  time,
+  .mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Видимый фокус — рамка --color-signal со смещением. outline:none без замены запрещён. */
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  /* Вторая часть оркестрованной сцены загрузки (CLAUDE.md, раздел 5): 3D-фон уже
+     виден, здесь проявляется заголовок. Чистый CSS — не тянуть анимационную
+     библиотеку в критический чанк ради одного разового перехода. */
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-hero-in {
+    animation: hero-in 0.2s 0.15s ease-out both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-hero-in {
+      animation: none;
+    }
+  }
+}
