@@ -18,11 +18,14 @@ ESLint, Prettier, Vitest, Node.js, Express.
 - **Project case pages** (`/work/:slug`) — problem / solution / outcome / lessons
   breakdown with a gallery, for projects worth a deeper look.
 - **Stack** — technologies grouped by category, without fake proficiency percentages.
-- **Contact** — email with one-click copy, GitHub/Telegram/LinkedIn links, an
-  availability badge.
-- **Navigation** — anchor links (Projects / Stack / Contacts) plus a GitHub link,
-  docked as a widget on the right edge of the screen; collapses into a menu button
-  on mobile (`src/app/Header.tsx`).
+- **Contact** — email with one-click copy, GitHub/Telegram links, an availability
+  badge.
+- **Navigation** — anchor links (Projects / Stack / Contacts) plus a GitHub link and
+  a language switch, docked as a widget on the right edge of the screen; collapses
+  into a menu button on mobile (`src/app/Header.tsx`).
+- **Language and theme** — the whole UI and all project content ship in Russian and
+  English (toggle in the header); dark is the default theme, with a light
+  alternative (toggle in the footer). Both persist in `localStorage`.
 
 ## Getting started
 
@@ -101,7 +104,9 @@ before making non-trivial changes.
    from `src/lib/gallery.ts`:
 
    ```ts
-   gallery: [galleryImage('pandemia', 'shop.png', 1600, 1000, 'Shop page, dark theme')]
+   gallery: [
+     galleryImage('pandemia', 'shop.png', 1600, 1000, { ru: 'Страница магазина', en: 'Shop page' }),
+   ]
    ```
 
    Width and height are the real pixel dimensions of the file (check the image's
@@ -110,6 +115,17 @@ before making non-trivial changes.
    time. The project's single cover image (used on the grid card and for Open Graph)
    stays a flat file at `public/covers/<slug>.svg|png|webp` — it doesn't need its own
    folder since there's only one per project.
+
+## Localization
+
+Every piece of user-facing text ships in both Russian and English — there's no
+"translate later." Static UI strings (nav labels, section titles, button text, aria
+labels) live in one dictionary, `src/lib/i18n.ts`, read via `useT()`. Anything
+specific to a project (title, tagline, highlights, case study text, image alt text)
+is stored as `LocalizedText` (`{ ru: string; en: string }`) directly in
+`src/data/projects.ts` and read via `pick(locale, text)`. The language toggle lives
+in the header; the chosen locale persists in `localStorage` and also drives
+`<html lang>` and date formatting (`src/lib/date.ts`).
 
 ## Deployment
 

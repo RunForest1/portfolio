@@ -1,6 +1,7 @@
 import Section from '@/components/Section'
 import Button from '@/components/Button'
 import { AVAILABILITY_LABEL, EMAIL, SOCIAL_LINKS } from '@/data/contact'
+import { pick, useLocale, useT } from '@/lib/i18n'
 import EmailCopyButton from './EmailCopyButton'
 
 /**
@@ -8,11 +9,14 @@ import EmailCopyButton from './EmailCopyButton'
  * добавляем, пока нет обработчика (CLAUDE.md, раздел 9, итерация 4).
  */
 export default function Contact() {
+  const locale = useLocale()
+  const t = useT()
+
   return (
-    <Section id="contact" title="Связаться">
+    <Section id="contact" title={t.nav.contact}>
       <div className="mt-4 inline-flex items-center gap-2 border border-signal px-3 py-1.5 text-xs text-signal">
         <span aria-hidden="true" className="size-1.5 rounded-full bg-signal" />
-        {AVAILABILITY_LABEL}
+        {pick(locale, AVAILABILITY_LABEL)}
       </div>
 
       <div className="mt-8 flex flex-wrap items-center gap-4">

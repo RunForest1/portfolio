@@ -1,4 +1,5 @@
 import Button from '@/components/Button'
+import { useT } from '@/lib/i18n'
 
 /**
  * Первый экран: 3D-фон уже виден к моменту монтирования (Backdrop живёт в Layout
@@ -8,6 +9,8 @@ import Button from '@/components/Button'
  * библиотеку в критический чанк ради одного разового появления.
  */
 export default function Hero() {
+  const t = useT()
+
   return (
     <section
       aria-labelledby="hero-heading"
@@ -17,15 +20,13 @@ export default function Hero() {
         <h1 id="hero-heading" className="text-4xl">
           RunForest1
         </h1>
-        <p className="mt-4 max-w-[36ch] text-lg text-haze">
-          Frontend-разработчик: React, TypeScript, three.js
-        </p>
+        <p className="mt-4 max-w-[36ch] text-lg text-haze">{t.hero.tagline}</p>
         <div className="mt-10 flex flex-wrap gap-4">
           <Button href="#work" variant="primary">
-            Проекты
+            {t.nav.projects}
           </Button>
           <Button href="#contact" variant="secondary">
-            Связаться
+            {t.hero.contactCta}
           </Button>
         </div>
       </div>

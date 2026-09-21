@@ -12,15 +12,15 @@ const stack: Tech[] = [
 function makeProject(overrides: Partial<Project>): Project {
   return {
     slug: 'test',
-    title: 'Test',
-    tagline: 'Tagline',
+    title: { ru: 'Тест', en: 'Test' },
+    tagline: { ru: 'Тест', en: 'Test' },
     year: 2026,
-    role: 'фронтенд',
+    role: { ru: 'фронтенд', en: 'frontend' },
     status: 'wip',
     stack: [],
     highlights: [],
     links: {},
-    cover: { src: '', alt: '', width: 1, height: 1 },
+    cover: { src: '', alt: { ru: '', en: '' }, width: 1, height: 1 },
     ...overrides,
   }
 }

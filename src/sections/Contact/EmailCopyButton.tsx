@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Check, Copy } from 'lucide-react'
+import { useT } from '@/lib/i18n'
 
 interface EmailCopyButtonProps {
   email: string
@@ -12,6 +13,7 @@ interface EmailCopyButtonProps {
  */
 export default function EmailCopyButton({ email }: EmailCopyButtonProps) {
   const [copied, setCopied] = useState(false)
+  const t = useT()
 
   async function handleCopy() {
     try {
@@ -34,7 +36,7 @@ export default function EmailCopyButton({ email }: EmailCopyButtonProps) {
       <button
         type="button"
         onClick={handleCopy}
-        aria-label={copied ? 'Email скопирован' : 'Скопировать email'}
+        aria-label={copied ? t.contact.emailCopied : t.contact.copyEmail}
         className="text-haze transition-colors duration-150 ease-out hover:text-signal"
       >
         {copied ? <Check aria-hidden="true" className="size-4" /> : <Copy aria-hidden="true" className="size-4" />}

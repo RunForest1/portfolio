@@ -1,10 +1,27 @@
+import { useEffect } from 'react'
 import { Outlet } from 'react-router'
 import Backdrop from '@/scene/Backdrop'
+import { useLocale } from '@/lib/i18n'
 import Header from './Header'
 import Footer from './Footer'
+import { useUIStore } from './store'
 
 /** Корневой лэйаут: фон общий для всех страниц, приглушается на страницах кейсов через sceneIntensity (итерация 3). */
 export default function Layout() {
+  const locale = useLocale()
+  const theme = useUIStore((state) => state.theme)
+
+  // <html lang>/[data-theme] должны жить на корневом элементе документа, а не
+  // внутри React-дерева — синхронизируем их со стором эффектом здесь, в
+  // единственном месте, которое рендерится ровно один раз на всё приложение.
+  useEffect(() => {
+    document.documentElement.lang = locale
+  }, [locale])
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+  }, [theme])
+
   return (
     <>
       <Backdrop />

@@ -1,3 +1,5 @@
+import type { LocalizedText } from '@/types/i18n'
+
 /**
  * Сайт деплоится на GitHub Pages как project-сайт (https://runforest1.github.io/portfolio/,
  * см. .github/workflows/deploy-pages.yml и GITHUB_PAGES_BASE в vite.config.ts).
@@ -8,4 +10,13 @@
  */
 export const SITE_URL = 'https://runforest1.github.io/portfolio'
 export const SITE_NAME = 'RunForest1'
-export const SITE_DESCRIPTION = 'Фронтенд-разработчик: React, TypeScript, three.js. Портфолио с разбором проектов.'
+
+export const SITE_DESCRIPTION: LocalizedText = {
+  ru: 'Фронтенд-разработчик: React, TypeScript, three.js. Портфолио с разбором проектов.',
+  en: 'Frontend developer: React, TypeScript, three.js. A portfolio with in-depth project case studies.',
+}
+
+export const JOB_TITLE: LocalizedText = {
+  ru: 'Фронтенд-разработчик',
+  en: 'Frontend developer',
+}

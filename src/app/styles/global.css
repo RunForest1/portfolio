@@ -30,6 +30,25 @@
     color-scheme: dark;
   }
 
+  /*
+   * Светлая тема — переключатель в футере, состояние в Zustand + localStorage
+   * (см. CLAUDE.md, раздел 5, и App/store.ts). По умолчанию сайт тёмный;
+   * light — единственная альтернатива, а не системная prefers-color-scheme,
+   * чтобы не мигать неверной темой до гидратации React.
+   * --color-signal здесь темнее, чем в тёмной теме: исходный #ff8a3d не
+   * держит 4.5:1 на светлом фоне (раздел 7 — контраст обязателен, не только
+   * поверх --color-void).
+   */
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --color-void: #eef1f5;
+    --color-hull: #ffffff;
+    --color-steel: #d4dbe3;
+    --color-haze: #55636f;
+    --color-ice: #10151c;
+    --color-signal: #c2410c;
+  }
+
   body {
     background-color: var(--color-void);
     color: var(--color-ice);

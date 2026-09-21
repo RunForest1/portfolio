@@ -5,6 +5,7 @@ import { techLabelById } from '@/data/stack'
 import { STATUS_LABEL } from '@/lib/projectStatus'
 import { formatShortDate } from '@/lib/date'
 import { withBase } from '@/lib/assetUrl'
+import { pick, useLocale, useT } from '@/lib/i18n'
 import type { Project } from '@/types/project'
 import { useGithubRepoInfo } from './useGithubRepoInfo'
 
@@ -46,32 +47,34 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
 function CardBody({ project, external }: { project: Project; external: boolean }) {
   const githubInfo = useGithubRepoInfo(project.links.repo)
+  const locale = useLocale()
+  const t = useT()
 
   return (
     <>
       <img
         src={withBase(project.cover.src)}
-        alt={project.cover.alt}
+        alt={pick(locale, project.cover.alt)}
         width={project.cover.width}
         height={project.cover.height}
         loading="lazy"
         className="aspect-[8/5] w-full border border-steel object-cover"
       />
       <div className="mt-4 flex items-start justify-between gap-4">
-        <h3 className="text-lg text-ice">{project.title}</h3>
+        <h3 className="text-lg text-ice">{pick(locale, project.title)}</h3>
         {external && (
           <ExternalLink aria-hidden="true" className="mt-1 size-4 shrink-0 text-haze group-hover:text-signal" />
         )}
       </div>
-      <p className="mt-2 text-sm text-haze">{project.tagline}</p>
+      <p className="mt-2 text-sm text-haze">{pick(locale, project.tagline)}</p>
       <div className="mono mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-haze">
         <span>{project.year}</span>
-        <span>{project.role}</span>
+        <span>{pick(locale, project.role)}</span>
         <Tag className={project.status === 'live' ? 'border-signal text-signal' : undefined}>
-          {STATUS_LABEL[project.status]}
+          {pick(locale, STATUS_LABEL[project.status])}
         </Tag>
       </div>
-      <ul className="mt-4 flex flex-wrap gap-2" aria-label="Стек проекта">
+      <ul className="mt-4 flex flex-wrap gap-2" aria-label={t.work.stackAriaLabel}>
         {project.stack.map((techId) => (
           <li key={techId}>
             <Tag>{techLabelById.get(techId) ?? techId}</Tag>
@@ -86,7 +89,7 @@ function CardBody({ project, external }: { project: Project; external: boolean }
             {githubInfo.stars}
           </span>
           {githubInfo.language && <span>{githubInfo.language}</span>}
-          <span>{formatShortDate(githubInfo.pushedAt)}</span>
+          <span>{formatShortDate(githubInfo.pushedAt, locale)}</span>
         </div>
       )}
     </>

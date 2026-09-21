@@ -1,8 +1,13 @@
 import { create } from 'zustand'
 import { getStorageItem, setStorageItem } from '@/lib/storage'
 import type { SceneIntensity } from '@/types/scene'
+import type { Locale } from '@/types/i18n'
 
 const LITE_MODE_KEY = 'lite-mode'
+const LOCALE_KEY = 'locale'
+const THEME_KEY = 'theme'
+
+export type Theme = 'dark' | 'light'
 
 interface UIState {
   /** Ручной lite-режим: полностью гасит 3D-сцену, состояние переживает перезагрузку. */
@@ -16,6 +21,14 @@ interface UIState {
   menuOpen: boolean
   setMenuOpen: (value: boolean) => void
   toggleMenu: () => void
+  /** Язык интерфейса — переключатель в шапке, состояние переживает перезагрузку. */
+  locale: Locale
+  setLocale: (value: Locale) => void
+  toggleLocale: () => void
+  /** Тема — переключатель в футере, состояние переживает перезагрузку. */
+  theme: Theme
+  setTheme: (value: Theme) => void
+  toggleTheme: () => void
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -35,4 +48,26 @@ export const useUIStore = create<UIState>((set) => ({
   menuOpen: false,
   setMenuOpen: (value) => set({ menuOpen: value }),
   toggleMenu: () => set((state) => ({ menuOpen: !state.menuOpen })),
+  locale: getStorageItem<Locale>(LOCALE_KEY, 'ru'),
+  setLocale: (value) => {
+    setStorageItem(LOCALE_KEY, value)
+    set({ locale: value })
+  },
+  toggleLocale: () =>
+    set((state) => {
+      const next: Locale = state.locale === 'ru' ? 'en' : 'ru'
+      setStorageItem(LOCALE_KEY, next)
+      return { locale: next }
+    }),
+  theme: getStorageItem<Theme>(THEME_KEY, 'dark'),
+  setTheme: (value) => {
+    setStorageItem(THEME_KEY, value)
+    set({ theme: value })
+  },
+  toggleTheme: () =>
+    set((state) => {
+      const next: Theme = state.theme === 'dark' ? 'light' : 'dark'
+      setStorageItem(THEME_KEY, next)
+      return { theme: next }
+    }),
 }))

@@ -5,6 +5,7 @@ import Button from '@/components/Button'
 import { projects } from '@/data/projects'
 import { stack } from '@/data/stack'
 import { filterProjectsByTech, getAvailableStack, parseTechParam } from '@/lib/projectFilter'
+import { useT } from '@/lib/i18n'
 import ProjectCard from './ProjectCard'
 
 /**
@@ -13,6 +14,7 @@ import ProjectCard from './ProjectCard'
  * поделиться — см. CLAUDE.md, раздел 9, итерация 2.
  */
 export default function Work() {
+  const t = useT()
   const [searchParams, setSearchParams] = useSearchParams()
   const availableStack = getAvailableStack(projects, stack)
   const activeTech = parseTechParam(searchParams.get('tech'), stack)
@@ -29,9 +31,9 @@ export default function Work() {
   }
 
   return (
-    <Section id="work" title="Проекты">
+    <Section id="work" title={t.work.title}>
       {availableStack.length > 0 && (
-        <ul className="mt-8 flex flex-wrap gap-2" aria-label="Фильтр по технологии">
+        <ul className="mt-8 flex flex-wrap gap-2" aria-label={t.work.filterAriaLabel}>
           {availableStack.map((tech) => {
             const isActive = tech.id === activeTech
             return (
@@ -66,9 +68,11 @@ export default function Work() {
       ) : (
         activeTech && (
           <div className="mt-8 flex flex-wrap items-center gap-4 border border-steel px-6 py-8 text-sm text-haze">
-            <p>По технологии «{stack.find((tech) => tech.id === activeTech)?.label}» проектов пока нет.</p>
+            <p>
+              {t.work.emptyPrefix} "{stack.find((tech) => tech.id === activeTech)?.label}" {t.work.emptySuffix}
+            </p>
             <Button variant="secondary" onClick={() => toggleTech(activeTech)}>
-              Сбросить фильтр
+              {t.work.resetFilter}
             </Button>
           </div>
         )

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { withBase } from '@/lib/assetUrl'
+import { pick, useLocale, useT } from '@/lib/i18n'
 import type { Image } from '@/types/project'
 
 interface GalleryProps {
@@ -16,6 +17,8 @@ const ICON_BUTTON_CLASSES =
  * (CLAUDE.md, раздел 9, итерация 3).
  */
 export default function Gallery({ images }: GalleryProps) {
+  const locale = useLocale()
+  const t = useT()
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const triggerRefs = useRef<(HTMLButtonElement | null)[]>([])
   const dialogRef = useRef<HTMLDivElement>(null)
@@ -66,7 +69,7 @@ export default function Gallery({ images }: GalleryProps) {
 
   return (
     <>
-      <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3" aria-label="Галерея проекта">
+      <ul className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3" aria-label={t.project.galleryAriaLabel}>
         {images.map((image, index) => (
           <li key={image.src}>
             <button
@@ -79,7 +82,7 @@ export default function Gallery({ images }: GalleryProps) {
             >
               <img
                 src={withBase(image.src)}
-                alt={image.alt}
+                alt={pick(locale, image.alt)}
                 width={image.width}
                 height={image.height}
                 loading="lazy"
@@ -98,14 +101,19 @@ export default function Gallery({ images }: GalleryProps) {
           ref={dialogRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Просмотр изображения"
+          aria-label={t.project.lightboxAriaLabel}
           tabIndex={-1}
           onClick={(event) => {
             if (event.target === event.currentTarget) close()
           }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-void/90 p-6 outline-none"
         >
-          <button type="button" onClick={close} aria-label="Закрыть" className={`${ICON_BUTTON_CLASSES} absolute right-6 top-6`}>
+          <button
+            type="button"
+            onClick={close}
+            aria-label={t.project.close}
+            className={`${ICON_BUTTON_CLASSES} absolute right-6 top-6`}
+          >
             <X aria-hidden="true" className="size-5" />
           </button>
 
@@ -114,7 +122,7 @@ export default function Gallery({ images }: GalleryProps) {
               <button
                 type="button"
                 onClick={() => step(-1)}
-                aria-label="Предыдущее изображение"
+                aria-label={t.project.prevImage}
                 className={`${ICON_BUTTON_CLASSES} absolute left-6 top-1/2 -translate-y-1/2`}
               >
                 <ChevronLeft aria-hidden="true" className="size-5" />
@@ -122,7 +130,7 @@ export default function Gallery({ images }: GalleryProps) {
               <button
                 type="button"
                 onClick={() => step(1)}
-                aria-label="Следующее изображение"
+                aria-label={t.project.nextImage}
                 className={`${ICON_BUTTON_CLASSES} absolute right-6 top-1/2 -translate-y-1/2`}
               >
                 <ChevronRight aria-hidden="true" className="size-5" />
@@ -132,7 +140,7 @@ export default function Gallery({ images }: GalleryProps) {
 
           <img
             src={withBase(openImage.src)}
-            alt={openImage.alt}
+            alt={pick(locale, openImage.alt)}
             width={openImage.width}
             height={openImage.height}
             className="max-h-full max-w-full object-contain"
