@@ -6,7 +6,7 @@ import type { Tech } from '@/types/tech'
 const stack: Tech[] = [
   { id: 'react', label: 'React', category: 'frontend' },
   { id: 'docker', label: 'Docker', category: 'infra' },
-  { id: 'python', label: 'Python', category: 'backend' },
+  { id: 'nestjs', label: 'NestJS', category: 'backend' },
 ]
 
 function makeProject(overrides: Partial<Project>): Project {
@@ -37,7 +37,7 @@ describe('getAvailableStack', () => {
   })
 
   it('не включает технологию, если ни один проект её не использует', () => {
-    expect(getAvailableStack(projects, stack).some((tech) => tech.id === 'python')).toBe(false)
+    expect(getAvailableStack(projects, stack).some((tech) => tech.id === 'nestjs')).toBe(false)
   })
 })
 
@@ -51,7 +51,7 @@ describe('filterProjectsByTech', () => {
   })
 
   it('возвращает пустой список, если ни один проект не подходит', () => {
-    expect(filterProjectsByTech(projects, 'python')).toEqual([])
+    expect(filterProjectsByTech(projects, 'nestjs')).toEqual([])
   })
 })
 

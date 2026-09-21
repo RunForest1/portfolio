@@ -11,12 +11,18 @@ export type TechId =
   | 'react-router'
   | 'nodejs'
   | 'nestjs'
-  | 'python'
-  | 'socketio'
+  | 'express'
+  | 'websocket'
+  | 'grammy'
   | 'postgresql'
   | 'docker'
+  | 'jenkins'
+  | 'linux'
   | 'vite'
   | 'vitest'
+  | 'claude'
+  | 'codex'
+  | 'zed'
 
 export interface Tech {
   id: TechId

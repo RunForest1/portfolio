@@ -4,14 +4,6 @@
 import { galleryImage } from '../lib/gallery.ts'
 import type { Project } from '@/types/project'
 
-/**
- * ЧЕРНОВИК: обложка и галерея pandemia — ещё плейсхолдер-заглушка, не
- * настоящий скриншот. Чтобы заменить на реальные фото: обложку — на
- * `public/covers/pandemia.svg` (или .png/.webp с тем же путём в `cover.src`),
- * галерею — сложить файлы в `public/gallery/pandemia/` и описать через
- * `galleryImage('pandemia', 'файл.png', ширина, высота, 'alt-текст')`
- * (см. README, раздел «Как добавить галерею проекта», и src/lib/gallery.ts).
- */
 export const projects: Project[] = [
   {
     slug: 'pandemia',
@@ -32,10 +24,10 @@ export const projects: Project[] = [
       demo: 'https://runforest1.github.io/pandemia/',
     },
     cover: {
-      src: '/covers/pandemia.svg',
+      src: '/covers/pandemia.webp',
       alt: '',
-      width: 800,
-      height: 500,
+      width: 1200,
+      height: 695,
     },
     featured: true,
     case: {
@@ -47,7 +39,14 @@ export const projects: Project[] = [
         'Сайт на React, деплой автоматизирован через GitHub Actions — заходишь и всё работает прямо в браузере: вход, баланс, магазин, корзина, профиль. UI и источник данных разделены, поэтому подключение реального бэкенда позже — это замена слоя данных, а не переписывание интерфейса.',
       lessons:
         'Не успел подключить мониторинг серверов в реальном времени — сейчас статус и онлайн в списке серверов заданы вручную. Это следующий шаг, когда будет куда его подключать на бэкенде.',
-      gallery: [galleryImage('pandemia', 'preview.svg', 800, 500)],
+      gallery: [
+        galleryImage('pandemia', 'pandemia-01.png', 1864, 4161, 'Главная страница: серверы, новости и магазин'),
+        galleryImage('pandemia', 'pandemia-02.png', 1864, 1080, 'Список серверов с онлайном и статусом'),
+        galleryImage('pandemia', 'pandemia-03.png', 1864, 1080, 'Магазин: покупка предметов для DayZ-серверов'),
+        galleryImage('pandemia', 'pandemia-04.png', 1864, 1080, 'Профиль: баланс и наигранные часы по серверам'),
+        galleryImage('pandemia', 'pandemia-05.png', 1864, 1080, 'Настройки: тема, язык интерфейса, уведомления'),
+        galleryImage('pandemia', 'pandemia-06.png', 1864, 1080, 'Тикеты поддержки: обращение и переписка'),
+      ],
     },
   },
 ]
