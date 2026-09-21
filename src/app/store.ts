@@ -12,6 +12,10 @@ interface UIState {
   /** Страница кейса приглушает фон поверх lite-режима — см. итерация 3. */
   sceneIntensity: SceneIntensity
   setSceneIntensity: (value: SceneIntensity) => void
+  /** Мобильная панель навигации (Header) — не переживает перезагрузку, обычное UI-состояние. */
+  menuOpen: boolean
+  setMenuOpen: (value: boolean) => void
+  toggleMenu: () => void
 }
 
 export const useUIStore = create<UIState>((set) => ({
@@ -28,4 +32,7 @@ export const useUIStore = create<UIState>((set) => ({
     }),
   sceneIntensity: 'full',
   setSceneIntensity: (value) => set({ sceneIntensity: value }),
+  menuOpen: false,
+  setMenuOpen: (value) => set({ menuOpen: value }),
+  toggleMenu: () => set((state) => ({ menuOpen: !state.menuOpen })),
 }))

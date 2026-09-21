@@ -20,17 +20,22 @@ ESLint, Prettier, Vitest, Node.js, Express.
 - **Stack** — technologies grouped by category, without fake proficiency percentages.
 - **Contact** — email with one-click copy, GitHub/Telegram/LinkedIn links, an
   availability badge.
+- **Navigation** — anchor links (Projects / Stack / Contacts) plus a GitHub link,
+  docked as a widget on the right edge of the screen; collapses into a menu button
+  on mobile (`src/app/Header.tsx`).
 
 ## Getting started
 
 ```bash
 pnpm install
-pnpm dev          # dev server
-pnpm build        # production build (fails on type errors)
-pnpm preview      # preview the production build locally
-pnpm typecheck    # tsc --noEmit
-pnpm lint         # eslint --max-warnings=0
-pnpm test         # vitest run
+pnpm dev            # dev server
+pnpm build          # production build, base path "/" (fails on type errors)
+pnpm build:pages    # production build, base path "/portfolio/" — for GitHub Pages
+pnpm preview        # preview the "/" build locally
+pnpm preview:pages  # preview the GitHub Pages build locally, at /portfolio/
+pnpm typecheck      # tsc --noEmit
+pnpm lint           # eslint --max-warnings=0
+pnpm test           # vitest run
 ```
 
 ## Project structure
@@ -88,8 +93,46 @@ See [`CLAUDE.MD`](./CLAUDE.MD) for the full project brief: content model, design
 tokens, the 3D scene spec, data model, iteration plan, and coding conventions. Read it
 before making non-trivial changes.
 
+## Adding a project's gallery
+
+1. Drop the screenshots into `public/gallery/<slug>/` — one folder per project, named
+   after the project's `slug`.
+2. In `src/data/projects.ts`, describe each image with the `galleryImage()` helper
+   from `src/lib/gallery.ts`:
+
+   ```ts
+   gallery: [galleryImage('pandemia', 'shop.png', 1600, 1000, 'Shop page, dark theme')]
+   ```
+
+   Width and height are the real pixel dimensions of the file (check the image's
+   properties, or any image viewer) — they're required to reserve layout space and
+   avoid layout shift (CLS), and nothing in this project auto-detects them at build
+   time. The project's single cover image (used on the grid card and for Open Graph)
+   stays a flat file at `public/covers/<slug>.svg|png|webp` — it doesn't need its own
+   folder since there's only one per project.
+
 ## Deployment
 
-`pnpm build` also regenerates `sitemap.xml` and `robots.txt` from the curated project
-list (`scripts/generate-seo-files.mjs`) before compiling, so every case-study page
-with a `case` block is included automatically.
+The site deploys to **GitHub Pages** as a project site
+(`https://runforest1.github.io/portfolio/`) via
+`.github/workflows/deploy-pages.yml`: every push to `main` runs typecheck, lint,
+tests, `pnpm build:pages`, and publishes `dist/`. The one manual step is enabling it
+once in the repository: **Settings → Pages → Source → GitHub Actions**.
+
+Because the site lives under a `/portfolio/` sub-path rather than a domain root:
+
+- `vite.config.ts` sets `base` to `/portfolio/` only when `GITHUB_PAGES=true` (set by
+  the workflow); locally it stays `/`.
+- The router's `basename` mirrors `import.meta.env.BASE_URL` (`src/app/routes.tsx`),
+  so links resolve correctly under the sub-path.
+- Any image path referenced as a plain string in code (not an `import`) goes through
+  `withBase()` (`src/lib/assetUrl.ts`) — Vite only rewrites paths inside `index.html`
+  automatically, not string literals in `.tsx` files.
+- `public/404.html` redirects unknown paths back to `index.html` (GitHub Pages has no
+  server-side SPA fallback) using the
+  [rafgraph/spa-github-pages](https://github.com/rafgraph/spa-github-pages) trick;
+  `index.html` decodes it back before React Router reads the URL.
+
+`pnpm build` (and `build:pages`) also regenerate `sitemap.xml` and `robots.txt` from
+the curated project list (`scripts/generate-seo-files.mjs`) before compiling, so every
+case-study page with a `case` block is included automatically.
