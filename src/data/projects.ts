@@ -13,7 +13,7 @@ export const projects: Project[] = [
       en: 'A DayZ server shop built with React: sign-in, balance and cart all work without a backend, on localStorage.',
     },
     year: 2026,
-    role: { ru: 'фулстек', en: 'Full-stack' },
+    role: { ru: 'Full-stack', en: 'Full-stack' },
     status: 'live',
     stack: ['react', 'typescript', 'tailwindcss', 'mui', 'vite'],
     highlights: [

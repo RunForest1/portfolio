@@ -12,8 +12,8 @@ export const SITE_URL = 'https://runforest1.github.io/portfolio'
 export const SITE_NAME = 'RunForest1'
 
 export const SITE_DESCRIPTION: LocalizedText = {
-  ru: 'Фронтенд-разработчик: React, TypeScript, three.js. Портфолио с разбором проектов.',
-  en: 'Frontend developer: React, TypeScript, three.js. A portfolio with in-depth project case studies.',
+  ru: 'Фронтенд-разработчик: React, TypeScript, Tailwind CSS, three.js. Портфолио с разбором проектов.',
+  en: 'Frontend developer: React, TypeScript, Tailwind CSS, three.js. A portfolio with in-depth project case studies.',
 }
 
 export const JOB_TITLE: LocalizedText = {

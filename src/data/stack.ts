@@ -22,6 +22,8 @@ export const stack: Tech[] = [
   { id: 'postgresql', label: 'PostgreSQL', category: 'infra' },
   { id: 'docker', label: 'Docker', category: 'infra' },
   { id: 'jenkins', label: 'Jenkins', category: 'infra' },
+  { id: 'grafana', label: 'Grafana', category: 'infra' },
+  { id: 'prometheus', label: 'Prometheus', category: 'infra' },
   { id: 'linux', label: 'Linux (Ubuntu)', category: 'infra' },
   { id: 'vite', label: 'Vite', category: 'tooling' },
   { id: 'vitest', label: 'Vitest', category: 'tooling' },

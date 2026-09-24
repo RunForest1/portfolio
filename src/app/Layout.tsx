@@ -27,7 +27,7 @@ export default function Layout() {
       <Backdrop />
       {/* pr-* резервирует место под навигацию-виджет (Header) у правого края,
           чтобы контент секций её не перекрывал на десктопе. */}
-      <div className="relative flex min-h-dvh flex-col md:pr-32 lg:pr-40">
+      <div className="relative flex min-h-dvh flex-col md:pr-40 lg:pr-48">
         <Header />
         <main className="flex-1">
           <Outlet />

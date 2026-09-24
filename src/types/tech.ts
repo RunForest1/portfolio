@@ -17,6 +17,8 @@ export type TechId =
   | 'postgresql'
   | 'docker'
   | 'jenkins'
+  | 'grafana'
+  | 'prometheus'
   | 'linux'
   | 'vite'
   | 'vitest'

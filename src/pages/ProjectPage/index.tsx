@@ -101,7 +101,14 @@ export default function ProjectPage() {
       />
       {caseLd && <JsonLd data={caseLd} />}
       <div className="mx-auto max-w-[1200px] px-6 pb-16 pt-24 md:px-16">
-        <h1 className="text-4xl">{pick(locale, project.title)}</h1>
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-sm text-haze transition-colors duration-150 ease-out hover:text-signal"
+        >
+          <ArrowLeft aria-hidden="true" className="size-4" />
+          {t.project.backHome}
+        </Link>
+        <h1 className="mt-6 text-4xl">{pick(locale, project.title)}</h1>
         <div className="mono mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-haze">
           <span>{project.year}</span>
           <span>{pick(locale, project.role)}</span>

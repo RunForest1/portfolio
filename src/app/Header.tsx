@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router'
-import { Menu, X } from 'lucide-react'
+import { Menu, Moon, Sun, X } from 'lucide-react'
 import Logo from '@/components/Logo'
 import Button from '@/components/Button'
 import GithubMark from '@/components/GithubMark'
@@ -18,6 +18,8 @@ export default function Header() {
   const setMenuOpen = useUIStore((state) => state.setMenuOpen)
   const locale = useLocale()
   const toggleLocale = useUIStore((state) => state.toggleLocale)
+  const theme = useUIStore((state) => state.theme)
+  const toggleTheme = useUIStore((state) => state.toggleTheme)
   const t = useT()
   const toggleButtonRef = useRef<HTMLButtonElement>(null)
 
@@ -26,6 +28,13 @@ export default function Header() {
     { href: '#stack', label: t.nav.stack },
     { href: '#contact', label: t.nav.contact },
   ]
+
+  // Клик по лого: если уже на главной, Link на тот же "/" не пересоздаёт
+  // страницу и не сбрасывает скролл сам — прокручиваем наверх вручную,
+  // чтобы кнопка вела не просто "на главную", а именно к её началу.
+  function handleLogoClick() {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   useEffect(() => {
     if (!menuOpen) return
@@ -44,17 +53,29 @@ export default function Header() {
     <header>
       <nav
         aria-label={t.header.mainNav}
-        className="fixed top-1/2 right-6 z-40 hidden -translate-y-1/2 flex-col items-end gap-4 border-r border-steel pr-6 md:right-10 md:flex"
+        className="fixed top-1/2 right-6 z-40 hidden w-36 -translate-y-1/2 flex-col items-stretch gap-4 border-r border-steel pr-6 md:right-10 md:flex"
       >
-        <Link to="/" aria-label={t.header.homeLabel} className="mb-2">
+        <Link to="/" aria-label={t.header.homeLabel} onClick={handleLogoClick} className="mb-2 self-end">
           <Logo className="size-10" />
         </Link>
         {navLinks.map((item) => (
-          <Button key={item.href} href={item.href} variant="secondary">
+          <Button key={item.href} href={item.href} variant="secondary" className="w-full justify-center">
             {item.label}
           </Button>
         ))}
-        <div className="mt-2 flex items-center gap-3">
+        <div className="mt-2 flex items-center justify-end gap-3">
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? t.header.switchToLight : t.header.switchToDark}
+            className="flex size-10 items-center justify-center border border-steel text-haze transition-colors duration-150 ease-out hover:border-signal hover:text-ice"
+          >
+            {theme === 'dark' ? (
+              <Sun aria-hidden="true" className="size-4" />
+            ) : (
+              <Moon aria-hidden="true" className="size-4" />
+            )}
+          </button>
           <button
             type="button"
             onClick={toggleLocale}
@@ -92,7 +113,7 @@ export default function Header() {
           <nav
             id="mobile-nav-panel"
             aria-label={t.header.mainNav}
-            className="mt-3 flex flex-col items-end gap-3 border border-steel bg-hull px-5 py-4"
+            className="mt-3 flex flex-col items-stretch gap-3 border border-steel bg-hull px-5 py-4"
           >
             {navLinks.map((item) => (
               <Button
@@ -106,6 +127,18 @@ export default function Header() {
               </Button>
             ))}
             <div className="mt-1 flex w-full items-center justify-end gap-3">
+              <button
+                type="button"
+                onClick={toggleTheme}
+                aria-label={theme === 'dark' ? t.header.switchToLight : t.header.switchToDark}
+                className="flex size-10 items-center justify-center border border-steel text-haze transition-colors duration-150 ease-out hover:border-signal hover:text-ice"
+              >
+                {theme === 'dark' ? (
+                  <Sun aria-hidden="true" className="size-4" />
+                ) : (
+                  <Moon aria-hidden="true" className="size-4" />
+                )}
+              </button>
               <button
                 type="button"
                 onClick={toggleLocale}

@@ -31,22 +31,23 @@
   }
 
   /*
-   * Светлая тема — переключатель в футере, состояние в Zustand + localStorage
+   * Светлая тема — переключатель в шапке, состояние в Zustand + localStorage
    * (см. CLAUDE.md, раздел 5, и App/store.ts). По умолчанию сайт тёмный;
    * light — единственная альтернатива, а не системная prefers-color-scheme,
    * чтобы не мигать неверной темой до гидратации React.
-   * --color-signal здесь темнее, чем в тёмной теме: исходный #ff8a3d не
-   * держит 4.5:1 на светлом фоне (раздел 7 — контраст обязателен, не только
-   * поверх --color-void).
+   * Палитра приглушённо-серая, а не белая: чистый белый фон на всю страницу
+   * слишком яркий и режет глаза рядом с 3D-сценой. --color-signal здесь
+   * темнее, чем в тёмной теме: исходный #ff8a3d не держит 4.5:1 на светлом
+   * фоне (раздел 7 — контраст обязателен, не только поверх --color-void).
    */
   :root[data-theme='light'] {
     color-scheme: light;
-    --color-void: #eef1f5;
-    --color-hull: #ffffff;
-    --color-steel: #d4dbe3;
-    --color-haze: #55636f;
+    --color-void: #d8dce1;
+    --color-hull: #e6e9ed;
+    --color-steel: #bcc3cb;
+    --color-haze: #4d5760;
     --color-ice: #10151c;
-    --color-signal: #c2410c;
+    --color-signal: #ad3609;
   }
 
   body {

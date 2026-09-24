@@ -19,6 +19,8 @@ const STRINGS = {
       openMenu: 'Открыть меню',
       closeMenu: 'Закрыть меню',
       switchLanguage: 'Переключить язык интерфейса на английский',
+      switchToLight: 'Переключить на светлую тему',
+      switchToDark: 'Переключить на тёмную тему',
     },
     nav: {
       projects: 'Проекты',
@@ -26,7 +28,7 @@ const STRINGS = {
       contact: 'Контакты',
     },
     hero: {
-      tagline: 'Фронтенд-разработчик: React, TypeScript, three.js',
+      tagline: 'Фронтенд-разработчик: React, TypeScript, Tailwind CSS, three.js',
       contactCta: 'Связаться',
     },
     work: {
@@ -52,12 +54,11 @@ const STRINGS = {
     },
     footer: {
       liteMode: 'Лёгкий режим',
-      switchToLight: 'Переключить на светлую тему',
-      switchToDark: 'Переключить на тёмную тему',
     },
     project: {
       demo: 'Демо',
       repo: 'Репозиторий',
+      backHome: 'На главную',
       problem: 'Задача',
       solution: 'Решение',
       outcome: 'Результат',
@@ -90,6 +91,8 @@ const STRINGS = {
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       switchLanguage: 'Switch interface language to Russian',
+      switchToLight: 'Switch to light theme',
+      switchToDark: 'Switch to dark theme',
     },
     nav: {
       projects: 'Projects',
@@ -97,7 +100,7 @@ const STRINGS = {
       contact: 'Contact',
     },
     hero: {
-      tagline: 'Frontend developer: React, TypeScript, three.js',
+      tagline: 'Frontend developer: React, TypeScript, Tailwind CSS, three.js',
       contactCta: 'Get in touch',
     },
     work: {
@@ -123,12 +126,11 @@ const STRINGS = {
     },
     footer: {
       liteMode: 'Lite mode',
-      switchToLight: 'Switch to light theme',
-      switchToDark: 'Switch to dark theme',
     },
     project: {
       demo: 'Demo',
       repo: 'Repository',
+      backHome: 'Back to home',
       problem: 'Problem',
       solution: 'Solution',
       outcome: 'Outcome',
