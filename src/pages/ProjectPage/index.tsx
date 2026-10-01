@@ -144,9 +144,11 @@ export default function ProjectPage() {
         </Section>
       )}
 
-      <Section id="gallery" title={t.project.gallery}>
-        <Gallery images={projectCase.gallery} />
-      </Section>
+      {projectCase.gallery.length > 0 && (
+        <Section id="gallery" title={t.project.gallery}>
+          <Gallery images={projectCase.gallery} />
+        </Section>
+      )}
 
       {(prevProject || nextProject) && (
         <nav
