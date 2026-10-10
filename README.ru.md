@@ -156,7 +156,7 @@ JSX запрещён.
 
    ```ts
    gallery: [
-     galleryImage('pandemia', 'shop.png', 1600, 1000, { ru: 'Страница магазина', en: 'Shop page' }),
+     galleryImage('my-project', 'shop.png', 1600, 1000, { ru: 'Страница магазина', en: 'Shop page' }),
    ]
    ```
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 import { Menu, Moon, Sun, X } from 'lucide-react'
 import Logo from '@/components/Logo'
 import Button from '@/components/Button'
@@ -21,6 +21,7 @@ export default function Header() {
   const theme = useUIStore((state) => state.theme)
   const toggleTheme = useUIStore((state) => state.toggleTheme)
   const t = useT()
+  const { pathname } = useLocation()
   const toggleButtonRef = useRef<HTMLButtonElement>(null)
 
   const navLinks = [
@@ -48,6 +49,10 @@ export default function Header() {
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [menuOpen, setMenuOpen])
+
+  // На странице кейса секций #work/#stack/#contact нет, поэтому якорные
+  // ссылки вести некуда — виджет-навигация скрывается целиком.
+  if (pathname.startsWith('/work/')) return null
 
   return (
     <header>

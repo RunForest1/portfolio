@@ -8,7 +8,7 @@ export interface Project {
   title: LocalizedText
   tagline: LocalizedText // одна строка, ≤ 90 символов
   year: number
-  role: LocalizedText // "фулстек", "фронтенд", "пет-проект"
+  role: LocalizedText // "Full-stack", "Frontend", "Plugin"
   status: ProjectStatus
   stack: TechId[] // ссылки на справочник, не свободный текст
   highlights: LocalizedText[] // 2-4 пункта: что решено, а не что использовано

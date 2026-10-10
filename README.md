@@ -156,7 +156,7 @@ Projects are curated by hand in `src/data/projects.ts`. Every visible string is 
 
    ```ts
    gallery: [
-     galleryImage('pandemia', 'shop.png', 1600, 1000, { ru: 'Страница магазина', en: 'Shop page' }),
+     galleryImage('my-project', 'shop.png', 1600, 1000, { ru: 'Страница магазина', en: 'Shop page' }),
    ]
    ```
 

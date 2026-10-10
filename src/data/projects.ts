@@ -6,91 +6,6 @@ import type { Project } from '@/types/project'
 
 export const projects: Project[] = [
   {
-    slug: 'pandemia',
-    title: { ru: 'Pandemia — магазин DayZ-серверов', en: 'Pandemia — DayZ server shop' },
-    tagline: {
-      ru: 'Магазин DayZ-серверов на React: вход, баланс и корзина работают без бэкенда, на localStorage.',
-      en: 'A DayZ server shop built with React: sign-in, balance and cart all work without a backend, on localStorage.',
-    },
-    year: 2026,
-    role: { ru: 'Full-stack', en: 'Full-stack' },
-    status: 'live',
-    stack: ['react', 'typescript', 'tailwindcss', 'mui', 'vite'],
-    highlights: [
-      {
-        ru: 'Полноценный UX витрины: авторизация, баланс, корзина и заявки в поддержку — все ключевые сценарии магазина работают уже сейчас',
-        en: 'Full storefront UX: sign-in, balance, cart and support tickets — every key shop flow already works',
-      },
-      {
-        ru: 'Данные пока эмулируются в localStorage — заложен переход на реальный бэкенд без переписывания интерфейса',
-        en: "Data is currently emulated in localStorage — built so switching to a real backend won't require rewriting the UI",
-      },
-      {
-        ru: 'Рядом лежит рабочий Express-бэкенд с настоящей Steam OpenID-авторизацией — задел на будущее, когда понадобится реальный сервер',
-        en: 'A working Express backend with real Steam OpenID auth already sits alongside it — ready for whenever a real server is needed',
-      },
-      {
-        ru: 'Тема (светлая/тёмная) и язык (RU/EN) переключаются в шапке и сохраняются в localStorage',
-        en: 'Theme (light/dark) and language (RU/EN) are switchable from the header and persisted in localStorage',
-      },
-    ],
-    links: {
-      repo: 'RunForest1/pandemia',
-      demo: 'https://runforest1.github.io/pandemia/',
-    },
-    cover: {
-      src: '/covers/pandemia.webp',
-      alt: { ru: '', en: '' },
-      width: 1200,
-      height: 695,
-    },
-    featured: true,
-    case: {
-      problem: {
-        ru: 'Нужен был витринный магазин DayZ-серверов с полноценным UX — вход, баланс, корзина, список серверов, поддержка — а не разовый макет: с заделом под будущий бэкенд и хостинг, чтобы проект можно было спокойно развивать дальше.',
-        en: 'The goal was a real storefront for DayZ servers with full UX — sign-in, balance, cart, server list, support — not a throwaway mockup: built with room for a future backend and hosting, so the project could keep growing.',
-      },
-      solution: {
-        ru: 'Интерфейс собран на React, TypeScript, Tailwind CSS и MUI — этого стека достаточно, чтобы быстро построить консистентный UX без лишних абстракций и самодельных компонентов там, где они не нужны. Авторизация, баланс, корзина и заявки в поддержку сейчас эмулируются в localStorage: осознанное решение на этом этапе — оно даёт полноценно пройти и показать весь пользовательский путь, не проектируя интеграцию с сервером вслепую. Тема (светлая/тёмная) и язык интерфейса переключаются в шапке и тоже сохраняются на клиенте.',
-        en: 'The UI is built with React, TypeScript, Tailwind CSS and MUI — that stack is enough to ship a consistent UX quickly, without extra abstractions or hand-rolled components where none are needed. Sign-in, balance, cart and support tickets are currently emulated in localStorage: a deliberate choice at this stage — it lets the whole user journey be walked through and demoed without designing a server integration blind. Theme (light/dark) and interface language switch from the header and are saved on the client too.',
-      },
-      outcome: {
-        ru: 'Сайт на React, деплой автоматизирован через GitHub Actions — заходишь и всё работает прямо в браузере: вход, баланс, магазин, корзина, профиль. UI и источник данных разделены, поэтому подключение реального бэкенда позже — это замена слоя данных, а не переписывание интерфейса.',
-        en: 'A React site with deployment automated through GitHub Actions — everything just works in the browser: sign-in, balance, shop, cart, profile. The UI and the data source are decoupled, so wiring up a real backend later means swapping the data layer, not rewriting the interface.',
-      },
-      lessons: {
-        ru: 'Не успел подключить мониторинг серверов в реальном времени — сейчас статус и онлайн в списке серверов заданы вручную. Это следующий шаг, когда будет куда его подключать на бэкенде.',
-        en: "Didn't get to wire up real-time server monitoring — the status and player counts in the server list are currently set by hand. That's the next step, once there's a backend to hook it up to.",
-      },
-      gallery: [
-        galleryImage('pandemia', 'pandemia-01.png', 1864, 4161, {
-          ru: 'Главная страница: серверы, новости и магазин',
-          en: 'Homepage: servers, news and shop',
-        }),
-        galleryImage('pandemia', 'pandemia-02.png', 1864, 1080, {
-          ru: 'Список серверов с онлайном и статусом',
-          en: 'Server list with player counts and status',
-        }),
-        galleryImage('pandemia', 'pandemia-03.png', 1864, 1080, {
-          ru: 'Магазин: покупка предметов для DayZ-серверов',
-          en: 'Shop: buying items for DayZ servers',
-        }),
-        galleryImage('pandemia', 'pandemia-04.png', 1864, 1080, {
-          ru: 'Профиль: баланс и наигранные часы по серверам',
-          en: 'Profile: balance and hours played per server',
-        }),
-        galleryImage('pandemia', 'pandemia-05.png', 1864, 1080, {
-          ru: 'Настройки: тема, язык интерфейса, уведомления',
-          en: 'Settings: theme, interface language, notifications',
-        }),
-        galleryImage('pandemia', 'pandemia-06.png', 1864, 1080, {
-          ru: 'Тикеты поддержки: обращение и переписка',
-          en: 'Support tickets: submitting a ticket and replies',
-        }),
-      ],
-    },
-  },
-  {
     slug: 'nursery',
     title: { ru: 'Nursery — платформа для учёбы', en: 'Nursery — a study platform' },
     tagline: {
@@ -98,9 +13,9 @@ export const projects: Project[] = [
       en: 'Lessons with notes and exercises; your code is checked in an isolated Docker container.',
     },
     year: 2026,
-    role: { ru: 'Full-stack, пет-проект', en: 'Full-stack, personal project' },
+    role: { ru: 'Full-stack', en: 'Full-stack' },
     status: 'live',
-    stack: ['typescript', 'react', 'tailwindcss', 'vite', 'zustand', 'react-router', 'nestjs', 'drizzle', 'postgresql', 'docker', 'bun'],
+    stack: ['typescript', 'react', 'tailwindcss', 'vite', 'zustand', 'react-router', 'nestjs', 'drizzle', 'postgresql', 'docker', 'bun', 'claude'],
     highlights: [
       {
         ru: 'Решение пишется в браузере и запускается в контейнере без сети (10 с, 256 МБ, 1 CPU); результаты тестов приходят потоком по мере выполнения',
@@ -130,8 +45,8 @@ export const projects: Project[] = [
     },
     case: {
       problem: {
-        ru: 'Я готовлюсь к вступительному экзамену в вуз и к собеседованиям на фронтенд-разработчика. Конспекты без практики не запоминаются, а задачи без теории превращаются в угадывание ответа. Нужно было одно место, где после каждой темы сразу идёт проверка понимания, а сам материал — обычные файлы, которые удобно писать и хранить в git.',
-        en: "I'm preparing for a university entrance exam and for frontend developer interviews. Notes without practice don't stick, and problem sets without theory turn into guessing. I wanted one place where every topic is immediately followed by a check of understanding, and where the material is plain files that are easy to write and keep in git.",
+        ru: 'Я готовлюсь к вступительному экзамену в вуз и к собеседованиям на фронтенд-разработчика. Конспекты без практики не запоминаются, а задачи без теории превращаются в угадывание ответа. Нужно было одно место, где после каждой темы сразу идёт проверка понимания, а сам материал — обычные файлы, которые удобно писать и хранить в git. Ещё одной целью проекта было получить опыт разработки с помощью агента Claude Code и изучить его внутренний инструментарий.',
+        en: "I'm preparing for a university entrance exam and for frontend developer interviews. Notes without practice don't stick, and problem sets without theory turn into guessing. I wanted one place where every topic is immediately followed by a check of understanding, and where the material is plain files that are easy to write and keep in git. Another goal of the project was to gain experience developing with the Claude Code agent and to study its internal tooling.",
       },
       solution: {
         ru: 'Источник правды — markdown-файлы в content/: импортёр раскладывает их по базе (PostgreSQL, Drizzle), а правка файла обновляет урок на месте, не стирая мои попытки. Решение пишется в CodeMirror, бэкенд (NestJS) склеивает его с обвязкой в один файл, чтобы номера строк в ошибках совпадали с редактором, и запускает в отдельном контейнере через sandbox-executor — мой отдельный пакет «образ + команда + лимиты → результат». Результаты тестов уходят в браузер потоком NDJSON, ответы сравниваются через isDeepStrictEqual. Темы, которые не ложатся на TypeScript напрямую (Unix, английский, CSS), смоделированы как поведение с единственным верным ответом: посчитать права после chmod, раскрыть glob, выбрать артикль, вычислить специфичность селектора.',
@@ -173,9 +88,9 @@ export const projects: Project[] = [
       en: 'Builds, Docker deploys, logs and metrics in one tab: a lightweight Jenkins + Portainer replacement.',
     },
     year: 2026,
-    role: { ru: 'Full-stack, пет-проект', en: 'Full-stack, personal project' },
+    role: { ru: 'Full-stack', en: 'Full-stack' },
     status: 'live',
-    stack: ['typescript', 'react', 'tailwindcss', 'vite', 'zustand', 'nestjs', 'prisma', 'postgresql', 'docker', 'websocket', 'bun'],
+    stack: ['typescript', 'react', 'tailwindcss', 'vite', 'zustand', 'nestjs', 'prisma', 'postgresql', 'docker', 'websocket', 'bun', 'claude'],
     highlights: [
       {
         ru: 'Репозиторий по SSH-ссылке, три команды (install, test, build) и кнопка «Собрать» — вместо YAML-пайплайнов и плагинов',
@@ -205,8 +120,8 @@ export const projects: Project[] = [
     },
     case: {
       problem: {
-        ru: 'У меня один домашний сервер и несколько своих проектов. Держать для них три отдельных сервиса — CI, панель контейнеров и мониторинг — избыточно, а деплоить руками через ssh + git pull + docker build надоело. Нужен был один инструмент на весь путь от коммита до работающего контейнера для сервера и 2–5 доверенных пользователей.',
-        en: 'I have one home server and a few projects of my own on it. Running three separate services for them — CI, a container panel and monitoring — is overkill, and deploying by hand with ssh + git pull + docker build got old. I needed one tool for the whole path from commit to running container, for a single server and 2–5 trusted users.',
+        ru: 'У меня один домашний сервер и несколько своих проектов. Держать для них три отдельных сервиса — CI, панель контейнеров и мониторинг — избыточно, а деплоить руками через ssh + git pull + docker build надоело. Нужен был один инструмент на весь путь от коммита до работающего контейнера для сервера и 2–5 доверенных пользователей. Ещё одной целью проекта было получить опыт разработки с помощью агента Claude Code и изучить его внутренний инструментарий.',
+        en: 'I have one home server and a few projects of my own on it. Running three separate services for them — CI, a container panel and monitoring — is overkill, and deploying by hand with ssh + git pull + docker build got old. I needed one tool for the whole path from commit to running container, for a single server and 2–5 trusted users. Another goal of the project was to gain experience developing with the Claude Code agent and to study its internal tooling.',
       },
       solution: {
         ru: 'Бэкенд на NestJS и Prisma, очередь сборок на pg-boss в той же PostgreSQL, Docker управляется через dockerode. Шаги сборки идут в изолированных контейнерах без привилегий (512 МБ, 1 CPU, лимит процессов, 15 минут на шаг); сама изоляция вынесена в отдельный пакет sandbox-executor, который ничего не знает о Ranger. Деплой: сборка образа → остановка старого контейнера → запуск нового → health-check → откат при неудаче; для сложных случаев есть деплой через Docker Compose, доступный только админу. Фронтенд — React-SPA с темами, RU/EN и командной палитрой на Ctrl+K; логи и терминал идут по WebSocket. Роли admin / operator / viewer, журнал аудита и публичная страница статуса только для выбранных проектов.',
@@ -244,7 +159,7 @@ export const projects: Project[] = [
       en: 'Design tokens, four themes and accessible React primitives for Tailwind 4 projects.',
     },
     year: 2026,
-    role: { ru: 'Frontend, пет-проект', en: 'Frontend, personal project' },
+    role: { ru: 'Frontend', en: 'Frontend' },
     status: 'live',
     stack: ['react', 'typescript', 'tailwindcss', 'vite', 'vitest'],
     highlights: [
@@ -296,6 +211,73 @@ export const projects: Project[] = [
         galleryImage('forest-ui', 'forest-ui-02.png', 1280, 760, {
           ru: 'Демо: светлая тема, тёплая палитра',
           en: 'Demo: light theme, warm palette',
+        }),
+      ],
+    },
+  },
+  {
+    slug: 'reflecsion',
+    title: { ru: 'Reflecsion — локальная транскрипция в Obsidian', en: 'Reflecsion — local transcription in Obsidian' },
+    tagline: {
+      ru: 'Плагин Obsidian, который превращает голосовые заметки в текст локально, на GigaAM v3.',
+      en: 'A desktop Obsidian plugin that transcribes voice notes locally, on GigaAM v3 — no cloud.',
+    },
+    year: 2026,
+    role: { ru: 'Плагин', en: 'Plugin' },
+    status: 'live',
+    stack: ['typescript', 'nodejs', 'bun'],
+    highlights: [
+      {
+        ru: 'Полностью локально: аудио не покидает машину, облачных API и телеметрии нет — после первой загрузки движка и модели плагин работает офлайн',
+        en: 'Fully local: audio never leaves the machine, with no cloud APIs or telemetry — once the engine and model are downloaded, the plugin runs offline',
+      },
+      {
+        ru: 'Русскую речь распознаёт GigaAM v3 от Сбера — качество заметно выше Whisper large-v3',
+        en: 'Russian speech is recognized by Sber\'s GigaAM v3 — noticeably above Whisper large-v3 in quality',
+      },
+      {
+        ru: 'Самодостаточная установка: при первом запуске плагин сам скачивает рантайм Bun (~90 МБ) и модель (~320 МБ) в свою папку, пользователю остаётся включить плагин',
+        en: 'Self-provisioning: on first launch the plugin downloads the Bun runtime (~90 MB) and the model (~320 MB) into its own folder — the user just enables it',
+      },
+      {
+        ru: 'Новую запись плагин находит сам и кладёт рядом с аудио Markdown-транскрипцию, вставляя ссылку на неё в заметку, где встроена запись',
+        en: 'New recordings are picked up automatically: a Markdown transcription is written next to the audio, with a link inserted into the note that embeds the recording',
+      },
+    ],
+    links: {
+      repo: 'RunForest1/reflecsion',
+    },
+    cover: {
+      src: '/covers/reflecsion.svg',
+      alt: { ru: 'Голосовая дорожка превращается в строки текста', en: 'A waveform turning into lines of text' },
+      width: 1600,
+      height: 1000,
+    },
+    case: {
+      problem: {
+        ru: 'Встроенный диктофон Obsidian пишет голосовые заметки, но не расшифровывает их, а держать расшифровку в облаке не хотелось: это приватный контент, и облачные сервисы часто плохо справляются с русским. Нужен был плагин, который делает транскрипцию прямо на машине, работает без интернета после установки и складывает результат в vault рядом с записью.',
+        en: 'The built-in Obsidian recorder captures voice notes but does not transcribe them, and keeping transcription in the cloud was not an option: it is private content, and cloud services are often weak at Russian. I wanted a plugin that transcribes on the machine itself, works without the internet after setup, and drops the result into the vault next to the recording.',
+      },
+      solution: {
+        ru: 'Плагин на TypeScript для десктопного Obsidian: каждая расшифровка идёт в отдельном дочернем процессе Bun, а не в процессе самого Obsidian. Внутри — sherpa-onnx с моделью GigaAM v3 (int8 CTC); тяжёлый нативный рантайм изолирован от редактора, поэтому зависший или упавший распознаватель не роняет Obsidian. Bun и модель скачиваются один раз через requestUrl (в обход CORS) в папку плагина и переиспользуются. Аудио уходит распознавателю временным файлом во временной папке ОС, результат возвращается JSON-ом в stdout. Транскрипция сохраняется как .md рядом с аудио (frontmatter с длительностью и датой), а ссылка на неё вставляется в заметку, где встроена запись. Авто-транскрипция подписывается на события vault только после onLayoutReady и отсекает старые файлы по времени создания — иначе Obsidian при старте рассылает create для всего vault. Декодер понимает только контейнеры ISO BMFF, поэтому плагин принимает .m4a/.mp4/.mov/.m4v/.3gp, а на Linux-ошибку ETXTBSY (файл ещё занят после распаковки Bun) заложены повторные попытки.',
+        en: 'A TypeScript plugin for desktop Obsidian: every transcription runs in a separate Bun child process rather than in Obsidian itself. Inside it is sherpa-onnx with the GigaAM v3 model (int8 CTC); the heavy native runtime is isolated from the editor, so a stuck or crashed recognizer cannot take Obsidian down. Bun and the model are downloaded once through requestUrl (bypassing CORS) into the plugin folder and reused. The audio reaches the recognizer as a temp file in the OS temp directory, and the result comes back as JSON on stdout. The transcription is saved as .md next to the audio (frontmatter with duration and date), and a link to it is inserted into the note where the recording is embedded. Auto-transcription subscribes to vault events only after onLayoutReady and filters out old files by creation time — otherwise Obsidian fires create for the whole vault on startup. The decoder only understands ISO BMFF containers, so the plugin accepts .m4a/.mp4/.mov/.m4v/.3gp, and it retries on the Linux ETXTBSY error (the file is still busy after Bun is unpacked).',
+      },
+      outcome: {
+        ru: 'Плагин ставится из релиза, при включении сам скачивает движок и модель и дальше работает офлайн. Две команды — «Транскрибировать текущий аудиофайл» и «Транскрибировать все новые аудио» — закрывают и одиночную заметку, и разовую обработку всего vault; во всплывающем уведомлении видно время распознавания. Работает на Linux, macOS и Windows; на мобильных — нет, там нет нативного рантайма.',
+        en: 'The plugin installs from a release, downloads the engine and model on first run and then works offline. Two commands — "Transcribe current audio" and "Transcribe all new audio" — cover both a single note and a one-off pass over the whole vault, and the notice shows how long recognition took. It runs on Linux, macOS and Windows; mobile is not supported, since there is no native runtime there.',
+      },
+      lessons: {
+        ru: 'Поддержка «голых» .mp3/.wav/.ogg/.flac/.webm упирается в декодер — их пришлось бы перекодировать на лету, и я отложил это. Если бы делал заново, вынес бы выбор модели и списка форматов в настройки, а не зашивал GigaAM v3 и контейнеры в код.',
+        en: 'Support for bare .mp3/.wav/.ogg/.flac/.webm ran into the decoder — they would have to be re-encoded on the fly, and I left that for later. If I did it again, I would move model and format choice into settings instead of hard-coding GigaAM v3 and the container list.',
+      },
+      gallery: [
+        galleryImage('reflecsion', 'reflecsion-01.svg', 1600, 1000, {
+          ru: 'Схема: плагин запускает дочерний процесс Bun с sherpa-onnx и GigaAM v3, результат возвращается JSON-ом',
+          en: 'Architecture: the plugin spawns a Bun child process with sherpa-onnx and GigaAM v3, and the result comes back as JSON',
+        }),
+        galleryImage('reflecsion', 'reflecsion-02.svg', 1600, 1000, {
+          ru: 'Готовая транскрипция: Markdown рядом с аудио, с frontmatter длительности и даты',
+          en: 'The finished transcription: Markdown next to the audio, with duration and date frontmatter',
         }),
       ],
     },
